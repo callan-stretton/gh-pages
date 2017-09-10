@@ -1,56 +1,60 @@
-var myCanvas = document.getElementById('canvasArea'); // defining canvas area
+// Wait for the DOM to be prepared before doing anything
+document.addEventListener("DOMContentLoaded", initCanvas)
 
-var tracking = false; // declaring tracking variable
+var myCanvas = null;
 var penColour = "black";
 
-myCanvas.addEventListener("mousedown", trackMouse); // event listener for mouse click held down
-myCanvas.addEventListener("mouseup", stopTrackMouse); // event listener for mouse click release
+function initCanvas() {
+  myCanvas = document.getElementById('canvasArea'); // assign canvas area
+  myCanvas.addEventListener("mousedown", trackMouse); // event listener for mouse click held down
+  myCanvas.addEventListener("mouseup", stopTrackMouse); // event listener for mouse click release
+}
 
 function trackMouse() {
-  tracking = true; // sets tracking variable to true
-  myCanvas.addEventListener("mousemove", draw); // initialises mousemove event listener in conjunction with the draw function
+  myCanvas.addEventListener("mousemove", draw); // start listening to mousemove
 }
 
 function stopTrackMouse () {
-  tracking = false; // sets tracking variable to true
+  myCanvas.removeEventListener("mousemove", draw); // stop listening to mousemove
 }
-
 
 function draw(evt) {
-  if (!tracking) { // if tracking is set to false, return out of function
-    return
-  } else {
-    var ctx = myCanvas.getContext("2d"); // have to have this to enable draw methods with HTML5 context object
-    var X = event.clientX; // track mouses x position
-    var Y = event.clientY - 50; // track mouses y position
-    ctx.fillStyle = penColour;
-    ctx.beginPath();
-    ctx.arc(X,Y,15,0,Math.PI*2,true);
-    ctx.closePath();
-    ctx.fill();
-  }
+  var ctx = myCanvas.getContext("2d"); // have to have this to enable draw methods with HTML5 context object
+  var X = event.clientX; // track mouses x position
+  var Y = event.clientY - 50; // track mouses y position
+  ctx.fillStyle = penColour;
+  ctx.beginPath();
+  ctx.arc(X,Y,15,0,Math.PI*2,true);
+  ctx.closePath();
+  ctx.fill();
 }
 
-function r(evt){
+function r(){
   penColour = "red";
 }
 
-function g(evt){
+function g(){
   penColour = "green";
 }
 
-function b(evt){
+function b(){
   penColour = "blue";
 }
 
-function y(evt){
+function y(){
   penColour = "yellow";
 }
 
-function p(evt){
+function p(){
   penColour = "black";
 }
 
-function e(evt){
+function e(){
   penColour = "white";
+}
+
+function wipe() {
+  myCanvas
+    .getContext("2d")
+    .clearRect(0, 0, myCanvas.width, myCanvas.height)
 }
