@@ -1,6 +1,7 @@
 var myCanvas = document.getElementById('canvasArea'); // defining canvas area
 
 var tracking = false; // declaring tracking variable
+var penColour = "black";
 
 myCanvas.addEventListener("mousedown", trackMouse); // event listener for mouse click held down
 myCanvas.addEventListener("mouseup", stopTrackMouse); // event listener for mouse click release
@@ -21,27 +22,35 @@ function draw(evt) {
   } else {
     var ctx = myCanvas.getContext("2d"); // have to have this to enable draw methods with HTML5 context object
     var X = event.clientX; // track mouses x position
-    var Y = event.clientY; // track mouses y position
-    ctx.fillStyle = "rgba(0,200,0,1)"; // "(r,g,b,aplha)"
-    ctx.fillRect(X,Y,22,22); // draws rectangle (x, y, w, h);
-    //ctx.arc(100,75,50,0,2*Math.PI);
+    var Y = event.clientY - 50; // track mouses y position
+    ctx.fillStyle = penColour;
+    ctx.beginPath();
+    ctx.arc(X,Y,15,0,Math.PI*2,true);
+    ctx.closePath();
+    ctx.fill();
   }
-
 }
 
-/*
-switch
-case default: black;
-if q w e r t y u i o p boxes
-
-- and + for size
-if statement for each time function on key is activated
-For +
-count ++
-if (count == 5) {
-shapeDimensionsW =
-shapeDimensionsHe =
+function r(evt){
+  penColour = "red";
 }
 
-//onmousemove
-*/
+function g(evt){
+  penColour = "green";
+}
+
+function b(evt){
+  penColour = "blue";
+}
+
+function y(evt){
+  penColour = "yellow";
+}
+
+function p(evt){
+  penColour = "black";
+}
+
+function e(evt){
+  penColour = "white";
+}

@@ -1,3 +1,35 @@
 #canvasArea {
-  background-color: orange;
+  background-color: white;
+  border-style: solid;
+  border-color: black;
+  border-width: 5px;
+}
+
+input[type="button"] {
+  width: 6em;
+  height: 3em;
+  color: black;
+  border-width: 0;
+  outline: none;
+}
+#r{
+  background: red;
+}
+#g{
+  background: green;
+}
+#b{
+  color: white;
+  background: blue;
+}
+#y{
+  background: yellow;
+}
+#p{
+  color: white;
+  background: black;
+}
+#e{
+  color: white;
+  background: grey;
 }
